@@ -9,7 +9,7 @@ import android.widget.Toast;
 import liou.rayyuan.phenom.model.OauthManager;
 import liou.rayyuan.phenom.model.SharePreferenceManager;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener, OauthManager.oauthManagerHandler {
 
     private Button loginButton;
 
@@ -22,6 +22,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         loginButton.setOnClickListener(this);
     }
 
+    //region View.OnClickListenr
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -30,10 +31,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 OauthManager oauthManager = new OauthManager(getSupportFragmentManager());
                 oauthManager.setCredentialStore(sharePreferenceManager);
-                String token = oauthManager.authAccount();
-
-                Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+                oauthManager.setCallbackHandler(this);
+                oauthManager.authAccountDirtyWay();
                 break;
         }
     }
+    //endregion
+
+    //region OauthManagerHandler
+    @Override
+    public void onAuthCallBack(String token) {
+        Toast.makeText(this, "Access Token is => " + token, Toast.LENGTH_SHORT).show();
+    }
+    //endregion
 }

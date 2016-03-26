@@ -2,6 +2,8 @@ package liou.rayyuan.phenom.model;
 
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.View;
 
 import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.api.client.auth.oauth2.ClientParametersAuthentication;
@@ -26,41 +28,45 @@ public class OauthManager {
 
     private SharedPreferencesCredentialStore credentialStore;
     private FragmentManager fragmentManager;
-    private String token;
+    private OauthManager.oauthManagerHandler callbackHandler;
 
     public OauthManager(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
     }
 
-    public String authAccount() {
+    // FIXME:: Figure out something elegant way to handle access token!
+    public void authAccountDirtyWay() {
         ClientParametersAuthentication client = new ClientParametersAuthentication(BuildConfig.PLURK_APPKEY, BuildConfig.PLURK_APPSECRET);
         AuthorizationFlow flow = setupAuthorizationFlow(client);
         AuthorizationDialogController dialogController = setupAuthDialog(fragmentManager);
 
         final OAuthManager oAuthManager = new OAuthManager(flow, dialogController);
 
-        token = "";
-
-        // FIXME:: Dirty code. fix it as soon as possable!
         new AsyncTask<String, String, Boolean>() {
             Credential credential;
+
             @Override
             protected Boolean doInBackground(String... strings) {
                 try {
-                    credential = oAuthManager.authorize10a("plurk", null, null).getResult();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    // need to be run on background thread.
+                    credential = oAuthManager.authorize10a("Plurk", null, null).getResult();
+                } catch (Exception e) {
+                    Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage());
                 }
                 return null;
             }
+
             @Override
             protected void onPostExecute(Boolean aBoolean) {
+                if (callbackHandler == null || credential == null) {
+                    return;
+                }
+
+                String token = credential.getAccessToken();
+                callbackHandler.onAuthCallBack(token);
                 super.onPostExecute(aBoolean);
-                token = credential.getAccessToken();
             }
         }.execute();
-
-        return token;
     }
 
     private AuthorizationFlow setupAuthorizationFlow(ClientParametersAuthentication client) {
@@ -99,6 +105,11 @@ public class OauthManager {
             public boolean isJavascriptEnabledForWebView() {
                 return true;
             }
+
+            @Override
+            public boolean setProgressShown(String url, View view, int newProgress) {
+                return false;
+            }
         };
 
         return controller;
@@ -106,5 +117,13 @@ public class OauthManager {
 
     public void setCredentialStore(SharePreferenceManager sharePreferenceManager) {
         credentialStore = sharePreferenceManager.getCredentialStore();
+    }
+
+    public void setCallbackHandler(oauthManagerHandler callbackHandler) {
+        this.callbackHandler = callbackHandler;
+    }
+
+    public interface oauthManagerHandler {
+        void onAuthCallBack(String token);
     }
 }
