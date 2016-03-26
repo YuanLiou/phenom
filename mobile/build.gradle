@@ -28,8 +28,7 @@ android {
     }
 
     productFlavors {
-        experiment {
-            useJack true
+        development {
             minSdkVersion 21
         }
         production {
@@ -65,7 +64,9 @@ dependencies {
     compile "com.squareup.retrofit2:converter-jackson:${retrofit_version}"
     compile "com.squareup.retrofit2:adapter-rxjava:${retrofit_version}"
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
-    compile 'com.wu-man:android-oauth-client:0.0.3'
+    compile ('com.wu-man:android-oauth-client:0.0.3') {
+        exclude module: 'support-v4'
+    }
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'com.artemzin.rxjava:proguard-rules:1.1.0.0'
