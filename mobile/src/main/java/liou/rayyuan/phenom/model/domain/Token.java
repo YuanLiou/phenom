@@ -14,4 +14,9 @@ public class Token extends _Token {
         return gson.fromJson(tokenString, Token.class);
     }
 
+    public static String JSONSerialization(Token token) {
+        Gson gson = new Gson();
+        return gson.toJson(token);
+    }
+
 }

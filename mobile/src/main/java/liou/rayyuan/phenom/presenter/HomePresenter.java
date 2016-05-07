@@ -2,8 +2,12 @@ package liou.rayyuan.phenom.presenter;
 
 import android.net.Uri;
 
+import liou.rayyuan.phenom.model.APIManager;
 import liou.rayyuan.phenom.model.OAuthManager;
+import liou.rayyuan.phenom.model.domain.Page;
 import liou.rayyuan.phenom.ui.handler.CommomViewHandler;
+import retrofit2.Response;
+import rx.functions.Action1;
 
 /**
  * Created by louis383 on 16/4/17.
@@ -43,6 +47,24 @@ public class HomePresenter implements OAuthManager.oAuthCallback, Presenter<Home
         oAuthManager.initPlurkAccessKey(uri);
     }
 
+    public void initAPIManager(String accessToken, String accessSecret) {
+        APIManager apiManager = new APIManager(accessToken, accessSecret);
+        apiManager.getTimelimePlurks("").subscribe(new Action1<Response<Page>>() {
+            @Override
+            public void call(Response<Page> pageResponse) {
+//                Sample ->                 
+//                Map<String, PlurkUsersDetail> maps = pageResponse.body().getPlurkUsers().getResultMap();
+//                Log.i("PlurkUsersDetail -> ", maps.get("3807744").getFullName());
+//                Log.i("PlurkTimeline -> ", pageResponse.body().getPlurks().get(0).getContent());
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        });
+    }
+
     //region oAuthCallback
     @Override
     public void onReceivedRequestKey(String url) {
@@ -53,8 +75,7 @@ public class HomePresenter implements OAuthManager.oAuthCallback, Presenter<Home
     @Override
     public void onReceivedAccessKey(String accessKey, String accessSecret) {
         view.webviewVisibility(false);
-        commomViewHandler.makeToast("Token -> " + accessKey);
-        commomViewHandler.makeToast("Secret -> " + accessSecret);
+        initAPIManager(accessKey, accessSecret);
     }
     //endregion
 
