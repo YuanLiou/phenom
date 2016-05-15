@@ -23,4 +23,12 @@
         android:visibility="gone"
         />
 
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="center"
+        />
+
 </FrameLayout>

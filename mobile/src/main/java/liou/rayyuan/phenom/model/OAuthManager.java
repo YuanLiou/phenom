@@ -3,9 +3,9 @@ package liou.rayyuan.phenom.model;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 
 import liou.rayyuan.phenom.BuildConfig;
+import liou.rayyuan.phenom.model.domain.Token;
 import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.basic.DefaultOAuthProvider;
 import oauth.signpost.exception.OAuthCommunicationException;
@@ -25,11 +25,13 @@ public class OAuthManager {
     private String oauthCallback = "oauth://plurk";
     private DefaultOAuthProvider provider;
     private DefaultOAuthConsumer consumer;
+    private Token userToken;
 
     private oAuthCallback callback;
 
     public OAuthManager(oAuthCallback callback) {
         this.callback = callback;
+        userToken = new Token();
     }
 
     public void initPlurkRequestKey() {
@@ -42,7 +44,6 @@ public class OAuthManager {
             protected Void doInBackground(Void... params) {
                 try {
                     authUrl = provider.retrieveRequestToken(consumer, oauthCallback);
-                    Log.i("OAuthManager", "authUrl => " + authUrl);
                 } catch (OAuthMessageSignerException messageSigner) {
                     messageSigner.printStackTrace();
                 } catch (OAuthNotAuthorizedException authException) {
@@ -77,6 +78,10 @@ public class OAuthManager {
                     provider.retrieveAccessToken(consumer, pinCode);
                     token = consumer.getToken();
                     tokenSecret = consumer.getTokenSecret();
+
+                    userToken.setOauthToken(consumer.getToken());
+                    userToken.setOauthTokenSecret(consumer.getTokenSecret());
+                    userToken.setOauthConsumerKey(consumer.getConsumerKey());
                 } catch (OAuthMessageSignerException messageSigner) {
                     messageSigner.printStackTrace();
                 } catch (OAuthNotAuthorizedException authException) {
@@ -92,7 +97,7 @@ public class OAuthManager {
             @Override
             protected void onPostExecute(Void aVoid) {
                 if (!token.isEmpty() && !tokenSecret.isEmpty()) {
-                    callback.onReceivedAccessKey(token, tokenSecret);
+                    callback.onReceivedAccessKey(token, tokenSecret, userToken);
                 }
                 super.onPostExecute(aVoid);
             }
@@ -101,7 +106,7 @@ public class OAuthManager {
 
     public interface oAuthCallback {
         void onReceivedRequestKey(String url);
-        void onReceivedAccessKey(String accessKey, String accessSecret);
+        void onReceivedAccessKey(String accessKey, String accessSecret, Token userToken);
     }
 }
 

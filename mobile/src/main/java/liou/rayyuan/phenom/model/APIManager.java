@@ -5,11 +5,13 @@ import com.google.gson.GsonBuilder;
 import java.util.concurrent.TimeUnit;
 
 import liou.rayyuan.phenom.BuildConfig;
+import liou.rayyuan.phenom.model.domain.Me;
 import liou.rayyuan.phenom.model.domain.Page;
 import liou.rayyuan.phenom.model.entity.PlurkUser;
 import liou.rayyuan.phenom.model.entity.deserializer.PlurkUsersDeserializer;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -63,10 +65,20 @@ public class APIManager {
         endpoint = retrofit.create(APIEndpoint.class);
     }
 
-    public Observable<Response<Page>> getTimelimePlurks(String offset) {
+    public Observable<Response<Page>> getTimelimePlurks(int offset) {
         return endpoint.fetchTimelinePlurks(offset, 20, true)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<Response<Me>> getMe() {
+        return endpoint.fetchMe()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Call<Void> expireToken() {
+        return endpoint.expireToken();
     }
 
 }

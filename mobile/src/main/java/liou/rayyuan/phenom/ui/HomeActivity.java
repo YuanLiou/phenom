@@ -9,16 +9,22 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import liou.rayyuan.phenom.PhenomApplication;
 import liou.rayyuan.phenom.R;
+import liou.rayyuan.phenom.model.APIManager;
+import liou.rayyuan.phenom.model.CurrentUserManager;
+import liou.rayyuan.phenom.model.DependencyCollection;
+import liou.rayyuan.phenom.model.PreferenceManager;
 import liou.rayyuan.phenom.presenter.HomePresenter;
-import liou.rayyuan.phenom.ui.handler.CommomViewHandler;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener, HomePresenter.ViewHandler, CommomViewHandler {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener, HomePresenter.ViewHandler {
     private static final String TAG = "HomeActivity";
     private Button loginButton;
     private WebView loginWebView;
+    private TextView demoText;
 
     private HomePresenter presenter;
 
@@ -28,12 +34,23 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         loginButton = (Button) findViewById(R.id.login_button);
         loginWebView = (WebView) findViewById(R.id.login_webview);
+        demoText = (TextView) findViewById(R.id.text_message);
         loginWebView.getSettings().setJavaScriptEnabled(true);
 
         loginButton.setOnClickListener(this);
 
-        presenter = new HomePresenter(this);
-        presenter.setCommomViewHandler(this);
+        presenter = new HomePresenter(buildDependencies());
+        presenter.attachView(this);
+    }
+
+    private DependencyCollection buildDependencies() {
+        PreferenceManager preferenceManager = ((PhenomApplication) getApplication()).getPreferenceManager(this);
+        CurrentUserManager currentUserManager = ((PhenomApplication) getApplication()).getCurrentUserManager(preferenceManager);
+
+        DependencyCollection dependencyCollection = new DependencyCollection();
+        dependencyCollection.setPreferenceManager(preferenceManager);
+        dependencyCollection.setCurrentUserManager(currentUserManager);
+        return dependencyCollection;
     }
 
     @Override
@@ -55,9 +72,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
-                presenter.getRequestKey();
-                loginButton.setVisibility(View.GONE);
-                loginWebView.setVisibility(View.VISIBLE);
+                presenter.buttonPressed();
                 break;
         }
     }
@@ -85,6 +100,35 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void webviewVisibility(boolean isVisible) {
         loginWebView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void initAPIManager(String accessToken, String accessSecret) {
+        APIManager apiManager = ((PhenomApplication) getApplication()).getApiManager(accessToken, accessSecret);
+        presenter.setAPIManager(apiManager);
+    }
+
+    @Override
+    public void initUserLogoutUI() {
+        loginButton.setText("Login");
+        demoText.setText("");
+    }
+
+    @Override
+    public void initUserIsLoginUI() {
+        loginButton.setText("Logout");
+        loginButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setWebViewVisible() {
+        loginButton.setVisibility(View.GONE);
+        loginWebView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setTimelineDemo(String text) {
+        demoText.setText(text);
     }
 
     @Override
