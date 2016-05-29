@@ -19,6 +19,8 @@ import oauth.signpost.exception.OAuthNotAuthorizedException;
  */
 public class OAuthManager {
 
+    public static final String URL_STARTWITH = "oauth";
+
     private String requestTokenEndpoint = "http://www.plurk.com/OAuth/request_token";
     private String accessTokenEndpoint = "http://www.plurk.com/OAuth/access_token";
     private String authorizationUrl = "http://www.plurk.com/m/authorize";

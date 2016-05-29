@@ -1,7 +1,6 @@
 package liou.rayyuan.phenom;
 
 import android.app.Application;
-import android.content.Context;
 
 import liou.rayyuan.phenom.model.APIManager;
 import liou.rayyuan.phenom.model.CurrentUserManager;
@@ -18,14 +17,16 @@ public class PhenomApplication extends Application {
 
     public APIManager getApiManager(String accessToken, String accessSecret) {
         if (apiManager == null) {
-            apiManager = new APIManager(accessToken, accessSecret);
+            apiManager = new APIManager();
         }
+
+        apiManager.setupAPIManager(accessToken, accessSecret);
         return apiManager;
     }
 
-    public PreferenceManager getPreferenceManager(Context context) {
+    public PreferenceManager getPreferenceManager() {
         if (preferenceManager == null) {
-            preferenceManager = new PreferenceManager(context);
+            preferenceManager = new PreferenceManager(getApplicationContext());
         }
         return preferenceManager;
     }
@@ -35,5 +36,9 @@ public class PhenomApplication extends Application {
             currentUserManager = new CurrentUserManager(preferenceManager);
         }
         return currentUserManager;
+    }
+
+    public void setApiManager(APIManager apiManager) {
+        this.apiManager = apiManager;
     }
 }

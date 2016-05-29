@@ -31,8 +31,8 @@ public class APIManager {
 
     private String baseUrl = "http://www.plurk.com/APP/";
 
-    public APIManager(String token, String tokenSecret) {
-        setAPIManager(token, tokenSecret);
+    public void setupAPIManager(String accessToken, String accessSecret) {
+        setAPIManager(accessToken, accessSecret);
     }
 
     private void setAPIManager(String accessToken, String accessSecret) {
