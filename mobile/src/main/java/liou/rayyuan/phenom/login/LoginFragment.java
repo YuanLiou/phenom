@@ -66,6 +66,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
         //TODO:: go back to timeline
         // refresh current APIManager
         ((PhenomApplication) getActivity().getApplication()).getApiManager(accessKey, accessSecret);
+        makeToast("accessKey => " + accessKey + ", accessSecret => " + accessSecret);
     }
 
     @Override

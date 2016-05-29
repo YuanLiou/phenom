@@ -1,10 +1,14 @@
 <resources>
 
+    <!-- main style setting -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/gray_21</item>
         <item name="colorPrimaryDark">@color/gray_21</item>
         <item name="colorAccent">@color/plurk_orange</item>
+    </style>
 
+    <!-- sub style setting -->
+    <style name="AppTheme.Translucent" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>

@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme"
         >
 
-        <activity android:name=".timeline.TimelineActivity" android:launchMode="singleTask">
+        <!--<activity android:name=".timeline.TimelineActivity" android:launchMode="singleTask">-->
+        <activity android:name=".login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,7 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".login.LoginActivity" />
     </application>
 
 </manifest>

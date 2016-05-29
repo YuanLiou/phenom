@@ -44,7 +44,11 @@ public class LoginActivity extends AppCompatActivity {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
                     LoginFragment loginFragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.main_content);
-                    return loginFragment.webViewGoBack();
+                    if (loginFragment.webViewGoBack()) {
+                        return true;
+                    }
+
+                    break;
             }
         }
 
