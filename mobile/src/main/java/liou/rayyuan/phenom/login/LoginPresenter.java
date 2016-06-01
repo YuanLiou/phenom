@@ -73,5 +73,11 @@ public class LoginPresenter implements OAuthManager.oAuthCallback, LoginContract
         currentUserManager.login(userToken);
         view.finishLogin(accessKey, accessSecret);
     }
+
+    @Override
+    public void onOAuthLoginError(String errorMessage) {
+        view.makeSnackbar(errorMessage);
+    }
+
     //endregion
 }

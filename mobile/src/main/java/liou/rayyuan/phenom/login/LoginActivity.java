@@ -17,6 +17,8 @@ import liou.rayyuan.phenom.utils.Router;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final int OAUTH_LOGIN = 1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

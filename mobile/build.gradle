@@ -1,8 +1,5 @@
 apply plugin: 'com.android.application'
 
-def cmd = 'git rev-list HEAD --count'
-def gitVersion = cmd.execute().text.trim().toInteger()
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -10,7 +7,7 @@ android {
     defaultConfig {
         applicationId "liou.rayyuan.phenom"
         targetSdkVersion 23
-        versionCode gitVersion
+        versionCode getGitVersionCodeTimeStamps()
         versionName "0.1"
         minSdkVersion 21
 
@@ -21,6 +18,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    dexOptions {
+        maxProcessCount 2
+        javaMaxHeapSize "2g"
     }
 
     packagingOptions {
@@ -43,6 +45,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled true
+    }
+}
+
+def getGitVersionCodeTimeStamps() {
+    def date = new Date()
+    def formatedDate = date.format("yyMMddHHmm")
+    def code = formatedDate.toInteger()
+
+    return code
 }
 
 dependencies {
@@ -60,6 +74,7 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'oauth.signpost:signpost-core:1.2.1.2'
+    compile 'com.facebook.fresco:fresco:0.10.0'
     compile 'se.akerfeldt:okhttp-signpost:1.1.0'
     compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.9.1@aar'){
         transitive=true

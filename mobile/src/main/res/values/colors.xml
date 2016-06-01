@@ -2,5 +2,20 @@
 <resources>
     <!-- basic tone -->
     <color name="gray_21">#212121</color>
+    <color name="gray_8f">#8F8F8F</color>
+    <color name="gray_b2">#B2B2B2</color>
+    <color name="gray_cc">#CCCCCC</color>
+
     <color name="plurk_orange">#E2560B</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- dark orange palette -->
+    <color name="dark_orange_primary">#FF5722</color>
+    <color name="dark_orange_primary_dark">#E64A19</color>
+    <color name="dark_orange_primary_light">#FFCCBC</color>
+    <color name="brown_accent">#795548</color>
+    <color name="day_primary_text">#212121</color>
+    <color name="day_secondary_text">#727272</color>
+    <color name="divider">#B6B6B6</color>
+
 </resources>

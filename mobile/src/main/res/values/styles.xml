@@ -1,14 +1,35 @@
 <resources>
 
     <!-- main style setting -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/gray_21</item>
-        <item name="colorPrimaryDark">@color/gray_21</item>
-        <item name="colorAccent">@color/plurk_orange</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/dark_orange_primary</item>
+        <item name="colorPrimaryDark">@color/dark_orange_primary_dark</item>
+        <item name="colorAccent">@color/brown_accent</item>
+
+        <item name="android:textColorPrimary">@color/day_primary_text</item>
+        <item name="android:textColorSecondary">@color/day_secondary_text</item>
+        <item name="dividerColor">@color/divider</item>
     </style>
 
     <!-- sub style setting -->
     <style name="AppTheme.Translucent" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+
+    <!-- night style setting -->
+    <style name="NightAppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/gray_21</item>
+        <item name="colorPrimaryDark">@color/gray_21</item>
+        <item name="colorAccent">@color/plurk_orange</item>
+
+        <item name="android:textColorSecondary">@color/gray_8f</item>
+    </style>
+
+    <!-- sub night style setting -->
+    <style name="NightAppTheme.Translucent" parent="NightAppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>

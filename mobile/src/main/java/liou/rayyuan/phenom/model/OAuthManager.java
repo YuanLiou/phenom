@@ -46,14 +46,10 @@ public class OAuthManager {
             protected Void doInBackground(Void... params) {
                 try {
                     authUrl = provider.retrieveRequestToken(consumer, oauthCallback);
-                } catch (OAuthMessageSignerException messageSigner) {
+                } catch (OAuthMessageSignerException | OAuthCommunicationException |
+                        OAuthExpectationFailedException | OAuthNotAuthorizedException messageSigner) {
+                    callback.onOAuthLoginError(messageSigner.getMessage());
                     messageSigner.printStackTrace();
-                } catch (OAuthNotAuthorizedException authException) {
-                    authException.printStackTrace();
-                } catch (OAuthExpectationFailedException authFailedException) {
-                    authFailedException.printStackTrace();
-                } catch (OAuthCommunicationException e) {
-                    e.printStackTrace();
                 }
 
                 return null;
@@ -84,15 +80,12 @@ public class OAuthManager {
                     userToken.setOauthToken(consumer.getToken());
                     userToken.setOauthTokenSecret(consumer.getTokenSecret());
                     userToken.setOauthConsumerKey(consumer.getConsumerKey());
-                } catch (OAuthMessageSignerException messageSigner) {
+                } catch (OAuthMessageSignerException | OAuthNotAuthorizedException |
+                        OAuthExpectationFailedException | OAuthCommunicationException messageSigner) {
+                    callback.onOAuthLoginError(messageSigner.getMessage());
                     messageSigner.printStackTrace();
-                } catch (OAuthNotAuthorizedException authException) {
-                    authException.printStackTrace();
-                } catch (OAuthExpectationFailedException authFailedException) {
-                    authFailedException.printStackTrace();
-                } catch (OAuthCommunicationException e) {
-                    e.printStackTrace();
                 }
+
                 return null;
             }
 
@@ -109,6 +102,7 @@ public class OAuthManager {
     public interface oAuthCallback {
         void onReceivedRequestKey(String url);
         void onReceivedAccessKey(String accessKey, String accessSecret, Token userToken);
+        void onOAuthLoginError(String errorMessage);
     }
 }
 
