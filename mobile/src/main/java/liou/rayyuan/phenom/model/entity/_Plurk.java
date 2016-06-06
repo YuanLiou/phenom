@@ -28,7 +28,7 @@ public abstract class _Plurk {
     private String content;
     @SerializedName("user_id")
     @Expose
-    private Integer userId;
+    private String userId;
     @SerializedName("plurk_type")
     @Expose
     private Integer plurkType;
@@ -40,16 +40,16 @@ public abstract class _Plurk {
     private Boolean replurked;
     @SerializedName("replurker_id")
     @Expose
-    private Object replurkerId;
+    private String replurkerId;
     @SerializedName("owner_id")
     @Expose
-    private Integer ownerId;
+    private String ownerId;
     @SerializedName("qualifier")
     @Expose
     private String qualifier;
     @SerializedName("plurk_id")
     @Expose
-    private Integer plurkId;
+    private String plurkId;
     @SerializedName("response_count")
     @Expose
     private Integer responseCount;
@@ -145,14 +145,14 @@ public abstract class _Plurk {
     /**
      * @return The userId
      */
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
     /**
      * @param userId The user_id
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -201,28 +201,28 @@ public abstract class _Plurk {
     /**
      * @return The replurkerId
      */
-    public Object getReplurkerId() {
+    public String getReplurkerId() {
         return replurkerId;
     }
 
     /**
      * @param replurkerId The replurker_id
      */
-    public void setReplurkerId(Object replurkerId) {
+    public void setReplurkerId(String replurkerId) {
         this.replurkerId = replurkerId;
     }
 
     /**
      * @return The ownerId
      */
-    public Integer getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
     /**
      * @param ownerId The owner_id
      */
-    public void setOwnerId(Integer ownerId) {
+    public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -243,14 +243,14 @@ public abstract class _Plurk {
     /**
      * @return The plurkId
      */
-    public Integer getPlurkId() {
+    public String getPlurkId() {
         return plurkId;
     }
 
     /**
      * @param plurkId The plurk_id
      */
-    public void setPlurkId(Integer plurkId) {
+    public void setPlurkId(String plurkId) {
         this.plurkId = plurkId;
     }
 

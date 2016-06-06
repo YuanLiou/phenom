@@ -41,7 +41,7 @@ public abstract class _PlurkUsersDetail {
     private Integer timelinePrivacy;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("display_name")
     @Expose
     private String displayName;
@@ -200,14 +200,14 @@ public abstract class _PlurkUsersDetail {
     /**
      * @return The id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id The id
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
