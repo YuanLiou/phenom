@@ -27,7 +27,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor;
  */
 public class APIManager {
 
-    private APIEndpoint endpoint;
+    private PlurkService plurkService;
 
     private String baseUrl = "http://www.plurk.com/APP/";
 
@@ -62,23 +62,23 @@ public class APIManager {
                 .client(client)
                 .build();
 
-        endpoint = retrofit.create(APIEndpoint.class);
+        plurkService = retrofit.create(PlurkService.class);
     }
 
     public Observable<Response<Page>> getTimelimePlurks(int offset) {
-        return endpoint.fetchTimelinePlurks(offset, 20, true)
+        return plurkService.fetchTimelinePlurks(offset, 20, true)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<Response<Me>> getMe() {
-        return endpoint.fetchMe()
+        return plurkService.fetchMe()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Call<Void> expireToken() {
-        return endpoint.expireToken();
+        return plurkService.expireToken();
     }
 
 }

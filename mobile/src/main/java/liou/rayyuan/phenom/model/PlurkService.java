@@ -12,7 +12,7 @@ import rx.Observable;
 /**
  * Created by louis383 on 16/4/17.
  */
-public interface APIEndpoint {
+public interface PlurkService {
 
     @GET("Timeline/getPlurks")
     Observable<Response<Page>> fetchTimelinePlurks(@Query("offset") int offset, @Query("limit") int limit, @Query("minimal_data") boolean isMinimal);

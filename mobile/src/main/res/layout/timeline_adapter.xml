@@ -1,117 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/timeline_adapter_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:locale="zh-rTW"
     >
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/timeline_profile_image"
-        android:layout_width="@dimen/profile_size"
-        android:layout_height="@dimen/profile_size"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginStart="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        app:placeholderImage="@color/gray_b2"
-        app:roundAsCircle="true"
-        app:fadeDuration="200"
-        />
+    <data>
+        <import type="liou.rayyuan.phenom.viewmodel.PlurkViewModel" alias="Plurk"/>
+        <import type="liou.rayyuan.phenom.viewmodel.PlurkUserViewModel" alias="User" />
+        <variable
+            name="plurk"
+            type="Plurk" />
+        <variable
+            name="user"
+            type="User" />
+    </data>
 
-    <TextView
-        android:id="@+id/timeline_user_name"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/timeline_adapter_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/timeline_timestamp"
-        android:layout_toRightOf="@id/timeline_timestamp"
-        android:layout_alignTop="@id/timeline_profile_image"
-        android:layout_alignLeft="@+id/timeline_user_feel"
-        android:textSize="@dimen/default_bigger_textSize"
-        android:textColor="?android:attr/textColorPrimary"
-        android:fontFamily="sans-serif"
-        android:maxLines="1"
-        android:ellipsize="end"
-        tools:text="User Name"
-        />
+        tools:locale="zh-rTW"
+        >
 
-    <TextView
-        android:id="@id/timeline_user_feel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_toRightOf="@id/timeline_profile_image"
-        android:layout_toEndOf="@id/timeline_profile_image"
-        android:layout_below="@id/timeline_user_name"
-        android:layout_marginStart="14dp"
-        android:textSize="@dimen/default_textSize"
-        android:textColor="?android:attr/textColorSecondary"
-        android:maxLines="1"
-        tools:text="轉推自"
-        />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/timeline_profile_image"
+            android:layout_width="@dimen/profile_size"
+            android:layout_height="@dimen/profile_size"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            app:placeholderImage="@color/gray_b2"
+            app:roundAsCircle="true"
+            app:fadeDuration="200"
+            />
 
-    <TextView
-        android:id="@+id/timeline_user_replurk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_toRightOf="@id/timeline_user_feel"
-        android:layout_toEndOf="@id/timeline_user_feel"
-        android:layout_below="@id/timeline_user_name"
-        android:layout_marginStart="4dp"
-        android:textSize="@dimen/default_textSize"
-        android:textColor="?android:attr/textColorSecondary"
-        android:fontFamily="sans-serif-medium"
-        android:maxLines="1"
-        android:ellipsize="end"
-        tools:text="KORORO"
-        />
+        <TextView
+            android:id="@+id/timeline_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/timeline_timestamp"
+            android:layout_toRightOf="@id/timeline_timestamp"
+            android:layout_alignTop="@id/timeline_profile_image"
+            android:layout_alignLeft="@+id/timeline_user_feel"
+            android:textSize="@dimen/default_bigger_textSize"
+            android:textColor="?android:attr/textColorPrimary"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{user.userDisplayName}"
+            tools:text="User Name"
+            />
 
-    <TextView
-        android:id="@id/timeline_timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_vertical_margin"
-        android:layout_alignBaseline="@id/timeline_user_name"
-        android:layout_alignParentEnd="true"
-        android:gravity="end"
-        android:textSize="@dimen/default_textSize"
-        android:textColor="?android:attr/textColorSecondary"
-        android:maxLines="1"
-        tools:text="1個小時 前"
-        />
+        <TextView
+            android:id="@id/timeline_user_feel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@id/timeline_profile_image"
+            android:layout_toEndOf="@id/timeline_profile_image"
+            android:layout_below="@id/timeline_user_name"
+            android:layout_marginStart="14dp"
+            android:textSize="@dimen/default_textSize"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="1"
+            android:text="@{plurk.feel}"
+            tools:text="轉推自"
+            />
 
-    <TextView
-        android:id="@+id/timeline_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_vertical_margin"
-        android:layout_alignBaseline="@id/timeline_user_feel"
-        android:layout_alignParentEnd="true"
-        android:gravity="end"
-        android:textSize="@dimen/default_textSize"
-        android:textColor="?android:attr/textColorSecondary"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="bold"
-        android:maxLines="1"
-        tools:text="15"
-        />
+        <TextView
+            android:id="@+id/timeline_user_replurk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@id/timeline_user_feel"
+            android:layout_toEndOf="@id/timeline_user_feel"
+            android:layout_below="@id/timeline_user_name"
+            android:layout_marginStart="4dp"
+            android:textSize="@dimen/default_textSize"
+            android:textColor="?android:attr/textColorSecondary"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="KERORO"
+            />
 
-    <TextView
-        android:id="@+id/timeline_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/timeline_profile_image"
-        android:layout_marginStart="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_vertical_margin"
-        android:layout_marginTop="12dp"
-        android:textSize="@dimen/default_textSize"
-        android:textColor="?android:attr/textColorPrimary"
-        android:maxLines="4"
-        android:ellipsize="end"
-        tools:text="有點想買4k運動攝影機了嗯..."
-        />
+        <TextView
+            android:id="@id/timeline_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_alignBaseline="@id/timeline_user_name"
+            android:layout_alignParentEnd="true"
+            android:gravity="end"
+            android:textSize="@dimen/default_textSize"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="1"
+            android:text="@{plurk.timeStamps}"
+            tools:text="1個小時 前"
+            />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/timeline_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_alignBaseline="@id/timeline_user_feel"
+            android:layout_alignParentEnd="true"
+            android:gravity="end"
+            android:textSize="@dimen/default_textSize"
+            android:textColor="?android:attr/textColorSecondary"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:text="@{plurk.messageCount}"
+            tools:text="15"
+            />
+
+        <TextView
+            android:id="@+id/timeline_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeline_profile_image"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_marginTop="12dp"
+            android:textSize="@dimen/default_textSize"
+            android:textColor="?android:attr/textColorPrimary"
+            android:maxLines="4"
+            android:ellipsize="end"
+            android:text="@{plurk.message}"
+            tools:text="有點想買4k運動攝影機了嗯..."
+            />
+
+    </RelativeLayout>
+</layout>
