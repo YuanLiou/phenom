@@ -13,16 +13,16 @@ public abstract class _Plurk {
 
     @SerializedName("replurkers_count")
     @Expose
-    private Integer replurkersCount;
+    private int replurkersCount;
     @SerializedName("replurkable")
     @Expose
-    private Boolean replurkable;
+    private boolean replurkable;
     @SerializedName("favorite_count")
     @Expose
-    private Integer favoriteCount;
+    private int favoriteCount;
     @SerializedName("is_unread")
     @Expose
-    private Integer isUnread;
+    private int isUnread;
     @SerializedName("content")
     @Expose
     private String content;
@@ -31,13 +31,13 @@ public abstract class _Plurk {
     private String userId;
     @SerializedName("plurk_type")
     @Expose
-    private Integer plurkType;
+    private int plurkType;
     @SerializedName("qualifier_translated")
     @Expose
     private String qualifierTranslated;
     @SerializedName("replurked")
     @Expose
-    private Boolean replurked;
+    private boolean replurked;
     @SerializedName("replurker_id")
     @Expose
     private String replurkerId;
@@ -52,16 +52,16 @@ public abstract class _Plurk {
     private String plurkId;
     @SerializedName("response_count")
     @Expose
-    private Integer responseCount;
+    private int responseCount;
     @SerializedName("anonymous")
     @Expose
-    private Boolean anonymous;
+    private boolean anonymous;
     @SerializedName("limited_to")
     @Expose
     private Object limitedTo;
     @SerializedName("no_comments")
     @Expose
-    private Integer noComments;
+    private int noComments;
     @SerializedName("posted")
     @Expose
     private String posted;
@@ -70,61 +70,61 @@ public abstract class _Plurk {
     private String lang;
     @SerializedName("favorite")
     @Expose
-    private Boolean favorite;
+    private boolean favorite;
 
     /**
      * @return The replurkersCount
      */
-    public Integer getReplurkersCount() {
+    public int getReplurkersCount() {
         return replurkersCount;
     }
 
     /**
      * @param replurkersCount The replurkers_count
      */
-    public void setReplurkersCount(Integer replurkersCount) {
+    public void setReplurkersCount(int replurkersCount) {
         this.replurkersCount = replurkersCount;
     }
 
     /**
      * @return The replurkable
      */
-    public Boolean getReplurkable() {
+    public boolean getReplurkable() {
         return replurkable;
     }
 
     /**
      * @param replurkable The replurkable
      */
-    public void setReplurkable(Boolean replurkable) {
+    public void setReplurkable(boolean replurkable) {
         this.replurkable = replurkable;
     }
 
     /**
      * @return The favoriteCount
      */
-    public Integer getFavoriteCount() {
+    public int getFavoriteCount() {
         return favoriteCount;
     }
 
     /**
      * @param favoriteCount The favorite_count
      */
-    public void setFavoriteCount(Integer favoriteCount) {
+    public void setFavoriteCount(int favoriteCount) {
         this.favoriteCount = favoriteCount;
     }
 
     /**
      * @return The isUnread
      */
-    public Integer getIsUnread() {
+    public int getIsUnread() {
         return isUnread;
     }
 
     /**
      * @param isUnread The is_unread
      */
-    public void setIsUnread(Integer isUnread) {
+    public void setIsUnread(int isUnread) {
         this.isUnread = isUnread;
     }
 
@@ -159,14 +159,14 @@ public abstract class _Plurk {
     /**
      * @return The plurkType
      */
-    public Integer getPlurkType() {
+    public int getPlurkType() {
         return plurkType;
     }
 
     /**
      * @param plurkType The plurk_type
      */
-    public void setPlurkType(Integer plurkType) {
+    public void setPlurkType(int plurkType) {
         this.plurkType = plurkType;
     }
 
@@ -187,14 +187,14 @@ public abstract class _Plurk {
     /**
      * @return The replurked
      */
-    public Boolean getReplurked() {
+    public boolean getReplurked() {
         return replurked;
     }
 
     /**
      * @param replurked The replurked
      */
-    public void setReplurked(Boolean replurked) {
+    public void setReplurked(boolean replurked) {
         this.replurked = replurked;
     }
 
@@ -257,28 +257,28 @@ public abstract class _Plurk {
     /**
      * @return The responseCount
      */
-    public Integer getResponseCount() {
+    public int getResponseCount() {
         return responseCount;
     }
 
     /**
      * @param responseCount The response_count
      */
-    public void setResponseCount(Integer responseCount) {
+    public void setResponseCount(int responseCount) {
         this.responseCount = responseCount;
     }
 
     /**
      * @return The anonymous
      */
-    public Boolean getAnonymous() {
+    public boolean getAnonymous() {
         return anonymous;
     }
 
     /**
      * @param anonymous The anonymous
      */
-    public void setAnonymous(Boolean anonymous) {
+    public void setAnonymous(boolean anonymous) {
         this.anonymous = anonymous;
     }
 
@@ -299,14 +299,14 @@ public abstract class _Plurk {
     /**
      * @return The noComments
      */
-    public Integer getNoComments() {
+    public int getNoComments() {
         return noComments;
     }
 
     /**
      * @param noComments The no_comments
      */
-    public void setNoComments(Integer noComments) {
+    public void setNoComments(int noComments) {
         this.noComments = noComments;
     }
 
@@ -341,14 +341,14 @@ public abstract class _Plurk {
     /**
      * @return The favorite
      */
-    public Boolean getFavorite() {
+    public boolean getFavorite() {
         return favorite;
     }
 
     /**
      * @param favorite The favorite
      */
-    public void setFavorite(Boolean favorite) {
+    public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
 

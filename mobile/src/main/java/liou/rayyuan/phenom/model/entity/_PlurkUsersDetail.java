@@ -14,19 +14,19 @@ public abstract class _PlurkUsersDetail {
 
     @SerializedName("verified_account")
     @Expose
-    private Boolean verifiedAccount;
+    private boolean verifiedAccount;
     @SerializedName("default_lang")
     @Expose
     private String defaultLang;
     @SerializedName("premium")
     @Expose
-    private Boolean premium;
+    private boolean premium;
     @SerializedName("dateformat")
     @Expose
-    private Integer dateformat;
+    private int dateformat;
     @SerializedName("has_profile_image")
     @Expose
-    private Integer hasProfileImage;
+    private int hasProfileImage;
     @SerializedName("full_name")
     @Expose
     private String fullName;
@@ -38,7 +38,7 @@ public abstract class _PlurkUsersDetail {
     private String timezone;
     @SerializedName("timeline_privacy")
     @Expose
-    private Integer timelinePrivacy;
+    private int timelinePrivacy;
     @SerializedName("id")
     @Expose
     private String id;
@@ -50,37 +50,37 @@ public abstract class _PlurkUsersDetail {
     private String nickName;
     @SerializedName("gender")
     @Expose
-    private Integer gender;
+    private int gender;
     @SerializedName("location")
     @Expose
     private String location;
     @SerializedName("background_id")
     @Expose
-    private Integer backgroundId;
+    private int backgroundId;
     @SerializedName("date_of_birth")
     @Expose
     private String dateOfBirth;
     @SerializedName("avatar")
     @Expose
-    private Integer avatar;
+    private int avatar;
     @SerializedName("bday_privacy")
     @Expose
-    private Integer bdayPrivacy;
+    private int bdayPrivacy;
     @SerializedName("karma")
     @Expose
-    private Double karma;
+    private double karma;
 
     /**
      * @return The verifiedAccount
      */
-    public Boolean getVerifiedAccount() {
+    public boolean getVerifiedAccount() {
         return verifiedAccount;
     }
 
     /**
      * @param verifiedAccount The verified_account
      */
-    public void setVerifiedAccount(Boolean verifiedAccount) {
+    public void setVerifiedAccount(boolean verifiedAccount) {
         this.verifiedAccount = verifiedAccount;
     }
 
@@ -101,7 +101,7 @@ public abstract class _PlurkUsersDetail {
     /**
      * @return The premium
      */
-    public Boolean getPremium() {
+    public boolean getPremium() {
         return premium;
     }
 
@@ -109,35 +109,35 @@ public abstract class _PlurkUsersDetail {
     /**
      * @param premium The premium
      */
-    public void setPremium(Boolean premium) {
+    public void setPremium(boolean premium) {
         this.premium = premium;
     }
 
     /**
      * @return The dateformat
      */
-    public Integer getDateformat() {
+    public int getDateformat() {
         return dateformat;
     }
 
     /**
      * @param dateformat The dateformat
      */
-    public void setDateformat(Integer dateformat) {
+    public void setDateformat(int dateformat) {
         this.dateformat = dateformat;
     }
 
     /**
      * @return The hasProfileImage
      */
-    public Integer getHasProfileImage() {
+    public int getHasProfileImage() {
         return hasProfileImage;
     }
 
     /**
      * @param hasProfileImage The has_profile_image
      */
-    public void setHasProfileImage(Integer hasProfileImage) {
+    public void setHasProfileImage(int hasProfileImage) {
         this.hasProfileImage = hasProfileImage;
     }
 
@@ -186,14 +186,14 @@ public abstract class _PlurkUsersDetail {
     /**
      * @return The timelinePrivacy
      */
-    public Integer getTimelinePrivacy() {
+    public int getTimelinePrivacy() {
         return timelinePrivacy;
     }
 
     /**
      * @param timelinePrivacy The timeline_privacy
      */
-    public void setTimelinePrivacy(Integer timelinePrivacy) {
+    public void setTimelinePrivacy(int timelinePrivacy) {
         this.timelinePrivacy = timelinePrivacy;
     }
 
@@ -242,14 +242,14 @@ public abstract class _PlurkUsersDetail {
     /**
      * @return The gender
      */
-    public Integer getGender() {
+    public int getGender() {
         return gender;
     }
 
     /**
      * @param gender The gender
      */
-    public void setGender(Integer gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -270,14 +270,14 @@ public abstract class _PlurkUsersDetail {
     /**
      * @return The backgroundId
      */
-    public Integer getBackgroundId() {
+    public int getBackgroundId() {
         return backgroundId;
     }
 
     /**
      * @param backgroundId The background_id
      */
-    public void setBackgroundId(Integer backgroundId) {
+    public void setBackgroundId(int backgroundId) {
         this.backgroundId = backgroundId;
     }
 
@@ -298,42 +298,42 @@ public abstract class _PlurkUsersDetail {
     /**
      * @return The avatar
      */
-    public Integer getAvatar() {
+    public int getAvatar() {
         return avatar;
     }
 
     /**
      * @param avatar The avatar
      */
-    public void setAvatar(Integer avatar) {
+    public void setAvatar(int avatar) {
         this.avatar = avatar;
     }
 
     /**
      * @return The bdayPrivacy
      */
-    public Integer getBdayPrivacy() {
+    public int getBdayPrivacy() {
         return bdayPrivacy;
     }
 
     /**
      * @param bdayPrivacy The bday_privacy
      */
-    public void setBdayPrivacy(Integer bdayPrivacy) {
+    public void setBdayPrivacy(int bdayPrivacy) {
         this.bdayPrivacy = bdayPrivacy;
     }
 
     /**
      * @return The karma
      */
-    public Double getKarma() {
+    public double getKarma() {
         return karma;
     }
 
     /**
      * @param karma The karma
      */
-    public void setKarma(Double karma) {
+    public void setKarma(double karma) {
         this.karma = karma;
     }
 
