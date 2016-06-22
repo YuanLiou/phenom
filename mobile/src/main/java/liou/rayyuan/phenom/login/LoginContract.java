@@ -1,6 +1,6 @@
 package liou.rayyuan.phenom.login;
 
-import android.webkit.WebView;
+import android.net.Uri;
 
 import liou.rayyuan.phenom.BasePresenter;
 import liou.rayyuan.phenom.BaseView;
@@ -12,12 +12,14 @@ import liou.rayyuan.phenom.BaseView;
 public interface LoginContract {
 
     interface Presenter extends BasePresenter {
-        void setupWebView(WebView webView);
+        void initLogin();
+        void continueToLogin(Uri uri);
     }
 
     interface View extends BaseView<Presenter> {
         boolean webViewGoBack();
         void finishLogin(String accessKey, String accessSecret);
+        void setWebViewClient(String url);
     }
 
 }

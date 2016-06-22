@@ -1,6 +1,7 @@
 package liou.rayyuan.phenom.login;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -9,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import liou.rayyuan.phenom.PhenomApplication;
 import liou.rayyuan.phenom.R;
+import liou.rayyuan.phenom.model.OAuthManager;
 
 public class LoginFragment extends Fragment implements LoginContract.View {
     public static final String TAG = "LoginFragment";
@@ -46,7 +49,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
         loginWebView = (WebView) view.findViewById(R.id.login_webview);
         loginWebView.getSettings().setJavaScriptEnabled(true);
 
-        presenter.setupWebView(loginWebView);
+        presenter.initLogin();
     }
 
     @Override
@@ -62,6 +65,23 @@ public class LoginFragment extends Fragment implements LoginContract.View {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void setWebViewClient(String url) {
+        loginWebView.loadUrl(url);
+        loginWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.startsWith(OAuthManager.URL_STARTWITH)) {
+                    Uri uri = Uri.parse(url);
+                    presenter.continueToLogin(uri);
+
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
     }
 
     @Override

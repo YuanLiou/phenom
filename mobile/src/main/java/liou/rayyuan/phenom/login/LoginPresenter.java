@@ -1,8 +1,6 @@
 package liou.rayyuan.phenom.login;
 
 import android.net.Uri;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import liou.rayyuan.phenom.model.CurrentUserManager;
 import liou.rayyuan.phenom.model.OAuthManager;
@@ -15,7 +13,6 @@ public class LoginPresenter implements OAuthManager.oAuthCallback, LoginContract
 
     private LoginContract.View view;
     private OAuthManager oAuthManager;
-    private WebView webView;
 
     private CurrentUserManager currentUserManager;
 
@@ -36,9 +33,13 @@ public class LoginPresenter implements OAuthManager.oAuthCallback, LoginContract
     }
 
     @Override
-    public void setupWebView(WebView webView) {
-        this.webView = webView;
+    public void initLogin() {
         getRequestKey();
+    }
+
+    @Override
+    public void continueToLogin(Uri uri) {
+        getAccessKey(uri);
     }
 
     private void getRequestKey() {
@@ -53,19 +54,7 @@ public class LoginPresenter implements OAuthManager.oAuthCallback, LoginContract
     //region oAuthCallback
     @Override
     public void onReceivedRequestKey(String url) {
-        webView.loadUrl(url);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.startsWith(OAuthManager.URL_STARTWITH)) {
-                    Uri uri = Uri.parse(url);
-                    getAccessKey(uri);
-
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
+        view.setWebViewClient(url);
     }
 
     @Override
