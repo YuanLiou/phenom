@@ -21,9 +21,10 @@ public class Plurk extends _Plurk {
 
     public Calendar getPostedDateTime() {
         // Mon, 06 Jun 2016 14:07:26 GMT
+        // Wed, 22 Jun 2016 15:17:27 GMT
         Calendar calendar = Calendar.getInstance();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
         formatter.setTimeZone(calendar.getTimeZone());
 
         try {
