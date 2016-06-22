@@ -1,4 +1,4 @@
-package liou.rayyuan.phenom.model.provider;
+package liou.rayyuan.phenom.model.repository;
 
 import java.util.ArrayList;
 import java.util.List;

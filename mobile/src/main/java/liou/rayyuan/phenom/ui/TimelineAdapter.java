@@ -16,10 +16,10 @@ import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractSwipeableItemView
 
 import liou.rayyuan.phenom.BR;
 import liou.rayyuan.phenom.R;
-import liou.rayyuan.phenom.model.domain.Plurk;
-import liou.rayyuan.phenom.model.domain.PlurkUsersDetail;
-import liou.rayyuan.phenom.model.provider.PlurkDataProvider;
-import liou.rayyuan.phenom.model.provider.UserDataProvider;
+import liou.rayyuan.phenom.model.repository.PlurkDataProvider;
+import liou.rayyuan.phenom.model.repository.UserDataProvider;
+import liou.rayyuan.phenom.viewmodel.PlurkUserViewModel;
+import liou.rayyuan.phenom.viewmodel.PlurkViewModel;
 
 /**
  * Created by louis383 on 2016/6/6.
@@ -56,8 +56,8 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Plurk plurk = plurkDataProvider.getItem(position);
-        PlurkUsersDetail usersDetail = userDataProvider.getUserDetail(plurk.getUserId());
+        PlurkViewModel plurk = plurkDataProvider.getItem(position).getViewModel();
+        PlurkUserViewModel usersDetail = userDataProvider.getUserDetail(plurk.getOwnerId()).getViewModel();
         
         holder.bind(plurk, usersDetail);
     }
@@ -109,9 +109,9 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
             this.binding = binding;
         }
 
-        public void bind(Plurk plurk, PlurkUsersDetail usersDetail) {
-            binding.setVariable(BR.plurk, plurk);
-            binding.setVariable(BR.user, usersDetail);
+        public void bind(PlurkViewModel plurkViewModel, PlurkUserViewModel userViewModel) {
+            binding.setVariable(BR.plurk, plurkViewModel);
+            binding.setVariable(BR.user, userViewModel);
             binding.executePendingBindings();
         }
     }

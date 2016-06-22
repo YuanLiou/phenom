@@ -66,7 +66,7 @@ public class APIManager {
     }
 
     public Observable<Response<Page>> getTimelimePlurks(int offset) {
-        return plurkService.fetchTimelinePlurks(offset, 20, true)
+        return plurkService.fetchTimelinePlurks(offset, Paginator.LIMIT, true)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }

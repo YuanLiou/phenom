@@ -23,8 +23,8 @@ public class PlurkViewModel {
 
     public String getTimeStamps() {
         Calendar calendar = plurk.getPostedDateTime();
-        String date = String.format(Locale.getDefault(), "%02d", calendar.get(Calendar.MONTH)) + "/" + calendar.get(Calendar.DATE);
-        String time = String.format(Locale.getDefault(), "%02d", calendar.get(Calendar.HOUR)) + ":" + calendar.get(Calendar.MINUTE);
+        String date = String.format(Locale.getDefault(), "%02d", calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.DATE);
+        String time = String.format(Locale.getDefault(), "%02d", calendar.get(Calendar.HOUR)) + ":" + String.format(Locale.getDefault(), "%02d", calendar.get(Calendar.MINUTE));
         return date + " " + time;
     }
 
@@ -38,5 +38,9 @@ public class PlurkViewModel {
 
     public String getPlurkId() {
         return plurk.getPlurkId();
+    }
+
+    public String getOwnerId() {
+        return plurk.getOwnerId();
     }
 }

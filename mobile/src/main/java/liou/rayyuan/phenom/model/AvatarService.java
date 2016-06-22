@@ -29,7 +29,7 @@ public class AvatarService {
 
     public Uri getAvatarUri(ImageSize size) {
         String imageUrl = "";
-        if (usersDetail.getHasProfileImage() == 1 && usersDetail.getAvatar() == null) {
+        if (usersDetail.getHasProfileImage() == 1 && usersDetail.getAvatar() == 0) {
             switch (size) {
                 case SMALL:
                     imageUrl = avatarHost + userId + "-small.gif";
@@ -41,7 +41,7 @@ public class AvatarService {
                     imageUrl = avatarHost + userId + "-big.jpg";
                     break;
             }
-        } else if (usersDetail.getHasProfileImage() == 1 && usersDetail.getAvatar() != null) {
+        } else if (usersDetail.getHasProfileImage() == 1 && usersDetail.getAvatar() != 0) {
             switch (size) {
                 case SMALL:
                     imageUrl = avatarHost + userId + "-small" + usersDetail.getAvatar() + ".gif";

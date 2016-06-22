@@ -1,4 +1,4 @@
-package liou.rayyuan.phenom.model.provider;
+package liou.rayyuan.phenom.model.repository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +11,10 @@ import liou.rayyuan.phenom.model.domain.PlurkUsersDetail;
 
 public class UserDataProvider {
     private Map<String, PlurkUsersDetail> user;
+
+    public UserDataProvider() {
+        this(null);
+    }
 
     public UserDataProvider(Map<String, PlurkUsersDetail> user) {
         if (user == null) {
