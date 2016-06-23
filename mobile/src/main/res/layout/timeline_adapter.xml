@@ -8,12 +8,8 @@
     <data>
         <import type="liou.rayyuan.phenom.viewmodel.PlurkViewModel" alias="Plurk"/>
         <import type="liou.rayyuan.phenom.viewmodel.PlurkUserViewModel" alias="User" />
-        <variable
-            name="plurk"
-            type="Plurk" />
-        <variable
-            name="user"
-            type="User" />
+        <variable name="plurk" type="Plurk" />
+        <variable name="user" type="User" />
     </data>
 
     <RelativeLayout
@@ -127,7 +123,7 @@
             android:layout_marginTop="12dp"
             android:textSize="@dimen/default_textSize"
             android:textColor="?android:attr/textColorPrimary"
-            android:maxLines="4"
+            android:maxLines="6"
             android:ellipsize="end"
             android:text="@{plurk.message}"
             tools:text="有點想買4k運動攝影機了嗯..."

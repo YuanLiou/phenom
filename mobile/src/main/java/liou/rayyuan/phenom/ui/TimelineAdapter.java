@@ -16,6 +16,7 @@ import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractSwipeableItemView
 
 import liou.rayyuan.phenom.BR;
 import liou.rayyuan.phenom.R;
+import liou.rayyuan.phenom.model.AvatarService;
 import liou.rayyuan.phenom.model.repository.PlurkDataProvider;
 import liou.rayyuan.phenom.model.repository.UserDataProvider;
 import liou.rayyuan.phenom.viewmodel.PlurkUserViewModel;
@@ -60,6 +61,8 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
         PlurkUserViewModel usersDetail = userDataProvider.getUserDetail(plurk.getOwnerId()).getViewModel();
         
         holder.bind(plurk, usersDetail);
+
+        holder.userCover.setImageURI(usersDetail.getUserAvatar(AvatarService.ImageSize.MEDIUM));
     }
 
     @Override
