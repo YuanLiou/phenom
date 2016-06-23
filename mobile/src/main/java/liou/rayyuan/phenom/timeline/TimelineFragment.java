@@ -16,19 +16,21 @@ import liou.rayyuan.phenom.R;
 import liou.rayyuan.phenom.login.LoginActivity;
 import liou.rayyuan.phenom.model.APIManager;
 import liou.rayyuan.phenom.ui.TimelineAdapter;
+import liou.rayyuan.phenom.utils.RecyclerViewLoadMoreHelper;
 import liou.rayyuan.phenom.utils.Utils;
 
 /**
  * Created by louis383 on 2016/6/1.
  */
 
-public class TimelineFragment extends Fragment implements TimelineContract.View {
+public class TimelineFragment extends Fragment implements TimelineContract.View, RecyclerViewLoadMoreHelper.Callback {
 
     public static final String TAG = "TIMELINE_FRAGMENT";
 
     private TimelineContract.Presenter presenter;
     private View layout;
     private RecyclerView recyclerView;
+    private RecyclerViewLoadMoreHelper loadMoreHelper;
     private TimelineAdapter adapter;
 
     public TimelineFragment() {}
@@ -55,6 +57,8 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(Utils.getLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL));
+
+        loadMoreHelper = new RecyclerViewLoadMoreHelper(recyclerView, this);
     }
 
     @Override
@@ -80,6 +84,8 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     @Override
     public void notifyDataSetChanged() {
         adapter.notifyDataSetChanged();
+
+        loadMoreHelper.enableLoadMore(true);
     }
 
     @Override
@@ -93,6 +99,11 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
         ((PhenomApplication) getActivity().getApplication()).setApiManager(accessToken, accessSecret);
         APIManager apiManager = ((PhenomApplication) getActivity().getApplication()).getApiManager();
         presenter.setAPIManager(apiManager);
+    }
+
+    @Override
+    public void onLoadMore(int totalItemCount, int itemBeforeMore, int maxVisiblePosition) {
+        presenter.loadMore(totalItemCount);
     }
 
     @Override

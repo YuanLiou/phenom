@@ -121,6 +121,7 @@
             android:layout_marginStart="@dimen/activity_vertical_margin"
             android:layout_marginEnd="@dimen/activity_vertical_margin"
             android:layout_marginTop="12dp"
+            android:paddingBottom="24dp"
             android:textSize="@dimen/default_textSize"
             android:textColor="?android:attr/textColorPrimary"
             android:maxLines="6"

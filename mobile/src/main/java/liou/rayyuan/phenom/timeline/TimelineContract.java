@@ -16,6 +16,7 @@ public interface TimelineContract {
         void fetchTimelime();
         void onActivityResult(int requestCode, int resultCode);
         void setAPIManager(APIManager apiManager);
+        void loadMore(int currentItemCount);
         PlurkDataProvider getPlurkDataProvider();
         UserDataProvider getUserDataProvider();
     }

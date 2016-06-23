@@ -76,6 +76,13 @@ public class TimelinePresenter implements TimelineContract.Presenter, Paginator.
     }
 
     @Override
+    public void loadMore(int currentItemCount) {
+        if (currentItemCount > 0) {
+            paginator.load();
+        }
+    }
+
+    @Override
     public PlurkDataProvider getPlurkDataProvider() {
         return plurkDataProvider;
     }
