@@ -43,4 +43,8 @@ public class PlurkViewModel {
     public String getOwnerId() {
         return plurk.getOwnerId();
     }
+
+    public int getReadStatus() {
+        return plurk.getIsUnread();
+    }
 }

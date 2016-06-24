@@ -105,7 +105,7 @@
             android:layout_alignParentEnd="true"
             android:gravity="end"
             android:textSize="@dimen/default_textSize"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textColor="@{plurk.readStatus == 1 ? @color/plurk_orange : @color/gray_8f }"
             android:fontFamily="sans-serif-medium"
             android:textStyle="bold"
             android:maxLines="1"

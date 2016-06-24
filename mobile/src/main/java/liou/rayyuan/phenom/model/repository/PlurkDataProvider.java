@@ -47,4 +47,8 @@ public class PlurkDataProvider {
     public Plurk getItem(int position) {
         return items.get(position);
     }
+
+    public String getLastPostDateTime() {
+        return items.get(items.size() - 1).getDateTimeString();
+    }
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import liou.rayyuan.phenom.model.entity._Plurk;
@@ -32,9 +33,21 @@ public class Plurk extends _Plurk {
             return calendar;
         } catch (ParseException e) {
             Log.i(this.getClass().getSimpleName(), e.getMessage());
-            e.printStackTrace();
         }
 
         return null;
+    }
+
+    public String getDateTimeString() {
+        // 2009-6-20T21:55:34
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+        try {
+            Date date = formatter.parse(getPosted());
+            return date.toString();
+        } catch (ParseException e) {
+            Log.i(this.getClass().getSimpleName(), e.getMessage());
+        }
+
+        return "";
     }
 }
