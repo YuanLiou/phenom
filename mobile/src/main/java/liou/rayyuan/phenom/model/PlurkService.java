@@ -15,7 +15,7 @@ import rx.Observable;
 public interface PlurkService {
 
     @GET("Timeline/getPlurks")
-    Observable<Response<Page>> fetchTimelinePlurks(@Query("offset") int offset, @Query("limit") int limit, @Query("minimal_data") boolean isMinimal);
+    Observable<Response<Page>> fetchTimelinePlurks(@Query("offset") String offset, @Query("limit") int limit, @Query("minimal_data") boolean isMinimal);
 
     @GET("Users/me")
     Observable<Response<Me>> fetchMe();

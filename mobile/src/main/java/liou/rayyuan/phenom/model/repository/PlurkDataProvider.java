@@ -49,6 +49,10 @@ public class PlurkDataProvider {
     }
 
     public String getLastPostDateTime() {
+        if (items.isEmpty()) {
+            return "";
+        }
+
         return items.get(items.size() - 1).getDateTimeString();
     }
 }

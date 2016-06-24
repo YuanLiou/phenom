@@ -77,7 +77,7 @@ public class TimelinePresenter implements TimelineContract.Presenter, Paginator.
 
     @Override
     public void loadMore(int currentItemCount) {
-        if (currentItemCount > 0) {
+        if (!plurkDataProvider.isEmpty()) {
             paginator.load();
         }
     }
@@ -100,7 +100,8 @@ public class TimelinePresenter implements TimelineContract.Presenter, Paginator.
 
     @Override
     public Observable<Response<Page>> paginatorNextCall(int offset) {
-        return apiManager.getTimelimePlurks(offset);
+        String lastPostTime = plurkDataProvider.getLastPostDateTime();
+        return apiManager.getTimelimePlurks(lastPostTime);
     }
 
     @Override

@@ -42,12 +42,12 @@ public class Paginator {
                     readEnd = page.getPlurks().isEmpty();
                     if (readEnd) {
                         callback.paginatorEnd();
+                    } else {
+                        callback.paginatorOnLoaded(page);
                     }
 
                     offset += LIMIT;
                     nextCall = prepareNextCall();
-
-                    callback.paginatorOnLoaded(page);
                 }
             }
         }, new Action1<Throwable>() {

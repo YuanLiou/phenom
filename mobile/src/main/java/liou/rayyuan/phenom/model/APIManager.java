@@ -65,7 +65,7 @@ public class APIManager {
         plurkService = retrofit.create(PlurkService.class);
     }
 
-    public Observable<Response<Page>> getTimelimePlurks(int offset) {
+    public Observable<Response<Page>> getTimelimePlurks(String offset) {
         return plurkService.fetchTimelinePlurks(offset, Paginator.LIMIT, true)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
