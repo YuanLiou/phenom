@@ -66,7 +66,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View,
         super.onResume();
         presenter.start();
 
-        adapter = new TimelineAdapter(presenter.getPlurkDataProvider(), presenter.getUserDataProvider());
+        adapter = new TimelineAdapter(presenter.getPlurkDataProvider(), presenter.getUserDataProvider(), getContext());
         recyclerView.setAdapter(adapter);
     }
 

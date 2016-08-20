@@ -1,5 +1,6 @@
 package liou.rayyuan.phenom.ui;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
@@ -31,9 +32,13 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     private PlurkDataProvider plurkDataProvider;
     private UserDataProvider userDataProvider;
 
-    public TimelineAdapter(PlurkDataProvider plurkDataProvider, UserDataProvider userDataProvider) {
+    private Context context;
+
+    public TimelineAdapter(PlurkDataProvider plurkDataProvider, UserDataProvider userDataProvider, Context context) {
         this.plurkDataProvider = plurkDataProvider;
         this.userDataProvider = userDataProvider;
+
+        this.context = context.getApplicationContext();
     }
 
     @Override
@@ -59,6 +64,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         PlurkViewModel plurk = plurkDataProvider.getItem(position).getViewModel();
         PlurkUserViewModel usersDetail = userDataProvider.getUserDetail(plurk.getOwnerId()).getViewModel();
+        plurk.setContext(context);
         
         holder.bind(plurk, usersDetail);
 

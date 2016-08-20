@@ -74,7 +74,8 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'oauth.signpost:signpost-core:1.2.1.2'
-    compile 'com.facebook.fresco:fresco:0.10.0'
+    compile 'com.facebook.fresco:fresco:0.11.0'
+    compile 'com.facebook.fresco:animated-gif:0.11.0'
     compile 'se.akerfeldt:okhttp-signpost:1.1.0'
     compile 'com.orhanobut:logger:1.13'
     compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.9.1@aar'){
